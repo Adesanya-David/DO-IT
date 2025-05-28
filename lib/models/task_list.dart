@@ -1,0 +1,51 @@
+final List<Map<String, dynamic>> taskCardList = [
+  {
+    'title': 'Liberty Pay',
+    'imageAsset': 'assets/images/Ellipse 550.png',
+    'daysLeft': '4d',
+    'startDate': '27-3-2022',
+    'endDate': '29-3-2022',
+  },
+  {
+    'title': 'Amazon Work',
+    'imageAsset': 'assets/images/Ellipse 550.png',
+    'daysLeft': '2d',
+    'startDate': '01-4-2022',
+    'endDate': '05-4-2022',
+  },
+  {
+    'title': 'Google Ads',
+    'imageAsset': 'assets/images/Ellipse 550.png',
+    'daysLeft': '6d',
+    'startDate': '10-4-2022',
+    'endDate': '15-4-2022',
+  },
+  {
+    'title': 'Amazon Work',
+    'imageAsset': 'assets/images/Ellipse 550.png',
+    'daysLeft': '2d',
+    'startDate': '01-4-2022',
+    'endDate': '05-4-2022',
+  },
+  {
+    'title': 'Google Ads',
+    'imageAsset': 'assets/images/Ellipse 550.png',
+    'daysLeft': '6d',
+    'startDate': '10-4-2022',
+    'endDate': '15-4-2022',
+  },
+  {
+    'title': 'Amazon Work',
+    'imageAsset': 'assets/images/Ellipse 550.png',
+    'daysLeft': '2d',
+    'startDate': '01-4-2022',
+    'endDate': '05-4-2022',
+  },
+  {
+    'title': 'Google Ads',
+    'imageAsset': 'assets/images/Ellipse 550.png',
+    'daysLeft': '6d',
+    'startDate': '10-4-2022',
+    'endDate': '15-4-2022',
+  },
+];
