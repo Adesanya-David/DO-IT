@@ -24,7 +24,7 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 103.h,
+      // height: 103.h,
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         border: Border.all(color: appColor),
