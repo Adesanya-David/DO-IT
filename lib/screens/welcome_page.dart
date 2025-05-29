@@ -30,7 +30,6 @@ class _WelcomePageState extends State<WelcomePage> {
           SizedBox(height: 51.h),
           DoItLogo(),
           SizedBox(height: 100.h),
-
           CircularImageWithShadow(imagePath: 'assets/svgs/Group 266.svg'),
           Stack(
             alignment: Alignment.topCenter,

@@ -34,110 +34,113 @@ class _SigninPageState extends State<SigninPage> {
     final authService = BiometricVM();
     return PageWrapper(
       appBar: CustomAppBar(text: ''),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 99.h),
-          DoItLogo(),
-          SizedBox(height: 18),
-          Center(
-            child: BoldText(
-              text: 'Welcome Back!',
-              fontFamily: 'Mark Pro',
-              fontSize: 24,
-              fontWeight: FontWeight.w500,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 99.h),
+            DoItLogo(),
+            SizedBox(height: 18),
+            Center(
+              child: BoldText(
+                text: 'Welcome Back!',
+                fontFamily: 'Mark Pro',
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          SizedBox(height: 36.h),
-          CustomBorderedTextFormField(
-            title: '',
-            hintText: 'Email',
-            validator: (value) => FormValidator.validateEmail(value),
-          ),
-          SizedBox(height: 16.h),
-          CustomBorderedTextFormField(
-            title: '',
-            obscureText: true,
-            hintText: 'Password',
-            validator: (value) => FormValidator.validatePassword(value),
-          ),
-          SizedBox(height: 8.h),
-          InkWell(
-            onTap: () {
-              ToastHelper.showToast(unavailable);
-            },
-            child: CustomText(
-              text: 'Forgot Password?',
-              color: Color.fromRGBO(129, 129, 129, 1),
+            SizedBox(height: 36.h),
+            CustomBorderedTextFormField(
+              title: '',
+              hintText: 'Email',
+              validator: (value) => FormValidator.validateEmail(value),
             ),
-          ),
-          SizedBox(height: 100.h),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
-                  label: 'Sign In',
-                  onPressed: () {
-                    navigateToPage(context, BottomNavBar(selectedIndex: 0));
+            SizedBox(height: 16.h),
+            CustomBorderedTextFormField(
+              title: '',
+              obscureText: true,
+              hintText: 'Password',
+              validator: (value) => FormValidator.validatePassword(value),
+            ),
+            SizedBox(height: 8.h),
+            InkWell(
+              onTap: () {
+                ToastHelper.showToast(unavailable);
+              },
+              child: CustomText(
+                text: 'Forgot Password?',
+                color: Color.fromRGBO(129, 129, 129, 1),
+              ),
+            ),
+            SizedBox(height: 100.h),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomButton(
+                    label: 'Sign In',
+                    onPressed: () {
+                      navigateToPage(context, BottomNavBar(selectedIndex: 0));
+                    },
+                  ),
+                ),
+                SizedBox(width: 16.w),
+                InkWell(
+                  onTap: () async {
+                    final isAuthenticated = await authService.authenticate();
+                    if (isAuthenticated) {
+                      navigateToPage(context, BottomNavBar(selectedIndex: 0));
+                    } else {
+                      ToastHelper.showToast('Authentication failed');
+                    }
                   },
-                ),
-              ),
-              SizedBox(width: 16.w),
-              InkWell(
-                onTap: () async {
-                  final isAuthenticated = await authService.authenticate();
-                  if (isAuthenticated) {
-                    navigateToPage(context, BottomNavBar(selectedIndex: 0));
-                  } else {
-                    ToastHelper.showToast('Authentication failed');
-                  }
-                },
-                child: Container(
-                  padding: EdgeInsets.all(8),
-                  height: 56.h,
-                  width: 56.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: blueBorderColor),
-                  ),
-                  child: SvgPicture.asset(
-                    'assets/svgs/ion_finger-print-outline.svg',
+                  child: Container(
+                    padding: EdgeInsets.all(8),
+                    height: 56.h,
+                    width: 56.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: blueBorderColor),
+                    ),
+                    child: SvgPicture.asset(
+                      'assets/svgs/ion_finger-print-outline.svg',
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: 12.h),
-          Center(
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  const TextSpan(
-                    text: 'Don\'t have an account? ',
+              ],
+            ),
+            SizedBox(height: 12.h),
+            Center(
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    const TextSpan(
+                      text: 'Don\'t have an account? ',
 
-                    style: TextStyle(
-                      color: Color.fromRGBO(218, 218, 218, 1),
-                      fontFamily: 'Sfpro',
+                      style: TextStyle(
+                        color: Color.fromRGBO(218, 218, 218, 1),
+                        fontFamily: 'Sfpro',
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: 'Create Account',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: appColor,
-                      fontFamily: 'Mark Pro',
+                    TextSpan(
+                      text: 'Create Account',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: appColor,
+                        fontFamily: 'Mark Pro',
+                      ),
+                      recognizer:
+                          TapGestureRecognizer()
+                            ..onTap = () {
+                              navigateToPage(context, SignUpPage());
+                            },
                     ),
-                    recognizer:
-                        TapGestureRecognizer()
-                          ..onTap = () {
-                            navigateToPage(context, SignUpPage());
-                          },
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
